@@ -14,8 +14,13 @@
             <a href="#introduction">Start the story</a>
         </div>
     </header>
+    <section class="scrollContainer" id="introduction">
+        <div class="scrollText"><p>Here today we will show you.</p></div>
+        <div class="scrollText"><p>The top racers with the most wins in formula 1 history</p></div>
+        <div class="scrollText"><p>Starting with the top 3 with the most wins</p></div>
+    </section>
     <section id="changingBg" class="scrollContainer">
-        <div id="Winner1" class="scrollText">
+        <div id="winner1" class="scrollText">
             <h2>Winner 1</h2>
             <aside class="alignRight">
                 <div class="circle greenBg">
@@ -23,7 +28,7 @@
                     <span class="small">Wins</span>
                 </div>
             </aside>
-            <p>Lewis Hamilton</p>
+            <p>Lewis Hamilton is the nr 1 winner of all time</p>
         </div>
         <div id="Winner2" class="scrollText">
             <h2>Winner 2</h2>
@@ -33,50 +38,131 @@
                     <span class="small">Wins</span>
                 </div>
             </aside>
-            <p>Michael Schumacher</p>
+            <p>Michael Schumacher is the 2<sup>th</sup> winner of all time</p>
         </div>
         <div id="Winner3" class="scrollText">
-            <h2>Winner 3</h2>
+            <h2>Sebastian Vettel</h2>
             <aside class="alignRight">
                 <div class="circle greenBg">
                     <span class="big">53</span>
                     <span class="small">Wins</span>
                 </div>
             </aside>
-            <p>Sebastian Vettel</p>
+            <p>Sebastian Vettel is the 3<sup>th</sup> winner of all time</p>
+        </div>
+        <div id="comparisonchart" class="scrollText">
+            <h2>Top 10 winners</h2>
+            </aside>
+            <p>This is the top ten winners of all time</p>
+            <canvas id="comparison"></canvas>
         </div>
     </section>
 
     <script>
-        const comparison = document.getElementById("comparison");
-    
-        // Create arrays with the necessary data, to make it available for JavaScript
-        const labelData = [];
-        data.map((item) => labelData.push(item.Abbreviation));
-        const winner1 = [];
-        data.map((item) => winner1.push(item.winner1));
-        const winner2 = [];
-        data.map((item) => winner2.push(item.winner2));
-        const winner3 = [];
-        data.map((item) => winner3.push(item.winner3));
-    
-        // Initialize the graph using Chart.js
+        const comparison = document.getElementById("comparison")
+        //Dataset
+        const data = [
+        {
+            Partyname: "Arbeiderpartiet",
+            Abbreviation: "AP",
+            Votes2019: "2603",
+            Votes2023: "2982"
+        },
+        {
+            Partyname: "Fremskrittspartiet",
+            Abbreviation: "FrP",
+            Votes2019: "1034",
+            Votes2023: "1030"
+        },
+        {
+            Partyname: "Høyre",
+            Abbreviation: "H",
+            Votes2019: "4141",
+            Votes2023: "3997"
+        },
+        {
+            Partyname: "Kristelig Folkeparti",
+            Abbreviation: "KrF",
+            Votes2019: "478",
+            Votes2023: "510"
+        },
+        {
+            Partyname: "Miljøpartiet de Grønne",
+            Abbreviation: "MdG",
+            Votes2019: "1058",
+            Votes2023: "530"
+        },
+        {
+            Partyname: "Rødt",
+            Abbreviation: "R",
+            Votes2019: "1044",
+            Votes2023: "802"
+        },
+        {
+            Partyname: "Senterpartiet",
+            Abbreviation: "Sp",
+            Votes2019: "2037",
+            Votes2023: "798"
+        },
+        {
+            Partyname: "Sosialistisk Venstreparti",
+            Abbreviation: "SV",
+            Votes2019: "744",
+            Votes2023: "672"
+        },
+        {
+            Partyname: "Venstre",
+            Abbreviation: "V",
+            Votes2019: "393",
+            Votes2023: "190"
+        },
+        {
+            Partyname: "Pensjonistpartiet",
+            Abbreviation: "Pp",
+            Votes2019: "1206",
+            Votes2023: "1438"
+        },
+        {
+            Partyname: "Industri og Næringspartiet",
+            Abbreviation: "INP",
+            Votes2019: "0",
+            Votes2023: "1290"
+        },
+        {
+            Partyname: "Liberalistene",
+            Abbreviation: "Lib",
+            Votes2019: "0",
+            Votes2023: "51"
+        },
+        {
+            Partyname: "Norgesdemokratene",
+            Abbreviation: "ND",
+            Votes2019: "0",
+            Votes2023: "201"
+        }
+        ]
+
+        //Create arrays with the necessary data, to make it available for JavaScript
+        const labelData = []
+        data.map((item) => labelData.push(item.Abbreviation))
+        const votes2019 = []
+        data.map((item) => votes2019.push(item.Votes2019))
+        const votes2023 = []
+        data.map((item) => votes2023.push(item.Votes2023))
+
+        //Initialize the graph using Chart.js
         new Chart(comparison, {
             type: "bar",
             data: {
-                labels: labelData, // Data array made from the data set
+                labels: labelData, //data array made from the data set
                 datasets: [
                     {
-                        label: "Winner 1",
-                        data: winner1 // Data array made from the data set
+                        label: "Votes 2019",
+                        data: votes2019 //data array made from the data set
                     },
                     {
-                        label: "Winner 2",
-                        data: winner2 // Data array made from the data set
-                    },
-                    {
-                        label: "Winner 3",
-                        data: winner3 // Data array made from the data set
+                        label: "Votes 2023",
+                        data: votes2023 //data array made from the data set
                     }
                 ]
             },
@@ -85,43 +171,39 @@
                     y: { beginAtZero: true }
                 }
             }
-        });
-    
-        // Function to check if element is in viewport
+        })
+
+        //Function to check if element is in viewport
         function isInViewport(el) {
             const rect = el.getBoundingClientRect();
             return (
-                // Improved check of viewport for elements exceeding viewport height
-                (rect.top <= 0 && rect.bottom >= 0) ||
-                (rect.top >= 0 &&
-                    rect.left >= 0 &&
-                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                    rect.right <= (window.innerWidth || document.documentElement.clientWidth))
+                //Improved check of viewport for elements exceeding viewport height
+                (rect.top <= 0 && rect.bottom >= 0) || 
+                (rect.top >= 0 && rect.left >= 0 &&
+                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.right <= (window.innerWidth || document.documentElement.clientWidth))
             );
         }
-    
-        // Make a check when page scrolls:
-        document.addEventListener("scroll", function () {
-            const changingBg = document.getElementById("changingBg"); // Background element to change
-    
-            // If a specific id is in the viewport...
-            if (isInViewport(document.getElementById("Winner1"))) {
-                // Change the background image using inline style
-                changingBg.style.backgroundImage = "url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Lewis_Hamilton_2017_Malaysia.jpg/640px-Lewis_Hamilton_2017_Malaysia.jpg)";
+
+        //Make a check when page scrolls:
+        document.addEventListener('scroll', function () {
+            //If a specific id is in the viewport...
+            if(isInViewport(document.getElementById("winner1"))) {
+                //...change the parent elements background image
+                document.getElementById("changingBg").style.backgroundImage = "url(https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/Lewis_Hamilton_2017_Malaysia.jpg/640px-Lewis_Hamilton_2017_Malaysia.jpg)"
             }
-            if (isInViewport(document.getElementById("Winner2"))) {
-                // Change the background image using inline style
-                changingBg.style.backgroundImage = "url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Schumi_di_GP_Kanada_2011_cropped.jpg/640px-Schumi_di_GP_Kanada_2011_cropped.jpg)";
+            if(isInViewport(document.getElementById("Winner2"))) {
+                document.getElementById("changingBg").style.backgroundImage = "url(https://upload.wikimedia.org/wikipedia/commons/thumb/b/bb/Schumi_di_GP_Kanada_2011_cropped.jpg/640px-Schumi_di_GP_Kanada_2011_cropped.jpg)"
             }
-            if (isInViewport(document.getElementById("Winner3"))) {
-                // Change the background image using inline style
-                changingBg.style.backgroundImage = "url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Sebastian_Vettel_2015_Malaysia_podium_1.jpg/640px-Sebastian_Vettel_2015_Malaysia_podium_1.jpg)";
+            if(isInViewport(document.getElementById("Winner3"))) {
+                document.getElementById("changingBg").style.backgroundImage = "url(https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Sebastian_Vettel_2015_Malaysia_podium_1.jpg/640px-Sebastian_Vettel_2015_Malaysia_podium_1.jpg)"
+            }
+            if(isInViewport(document.getElementById("comparisonchart"))) {
+                document.getElementById("changingBg").style.backgroundImage = "url(https://images.unsplash.com/photo-1578549651688-904046d4c9ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80)"
             }
         }, {
             passive: true
         });
     </script>
-    
-
 </body>
 </html>
