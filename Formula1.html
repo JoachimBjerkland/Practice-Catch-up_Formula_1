@@ -54,6 +54,7 @@
             <h2>Top 10 winners</h2>
             </aside>
             <p>This is the top ten winners of all time</p>
+            <div style="min-height:293px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/lTsE3/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/lTsE3/full.png" alt="" /></noscript></div>
             <canvas id="comparison"></canvas>
         </div>
     </section>
@@ -63,92 +64,69 @@
         //Dataset
         const data = [
         {
-            Partyname: "Arbeiderpartiet",
-            Abbreviation: "AP",
-            Votes2019: "2603",
-            Votes2023: "2982"
+            Driver: "1. Lewis Hamilton",
+            Country: "United Kingdom",
+            Wins: "103"
         },
         {
-            Partyname: "Fremskrittspartiet",
-            Abbreviation: "FrP",
-            Votes2019: "1034",
-            Votes2023: "1030"
+            Driver: "1. Lewis Hamilton",
+            Country: "United Kingdom",
+            Wins: "103"
         },
         {
-            Partyname: "Høyre",
-            Abbreviation: "H",
-            Votes2019: "4141",
-            Votes2023: "3997"
+            Driver: "1. Lewis Hamilton",
+            Country: "United Kingdom",
+            Wins: "103"
         },
         {
-            Partyname: "Kristelig Folkeparti",
-            Abbreviation: "KrF",
-            Votes2019: "478",
-            Votes2023: "510"
+            Driver: "1. Lewis Hamilton",
+            Country: "United Kingdom",
+            Wins: "103"
         },
         {
-            Partyname: "Miljøpartiet de Grønne",
-            Abbreviation: "MdG",
-            Votes2019: "1058",
-            Votes2023: "530"
+            Driver: "1. Lewis Hamilton",
+            Country: "United Kingdom",
+            Wins: "103"
         },
         {
-            Partyname: "Rødt",
-            Abbreviation: "R",
-            Votes2019: "1044",
-            Votes2023: "802"
+            Driver: "1. Lewis Hamilton",
+            Country: "United Kingdom",
+            Wins: "103"
         },
         {
-            Partyname: "Senterpartiet",
-            Abbreviation: "Sp",
-            Votes2019: "2037",
-            Votes2023: "798"
+            Driver: "1. Lewis Hamilton",
+            Country: "United Kingdom",
+            Wins: "103"
         },
         {
-            Partyname: "Sosialistisk Venstreparti",
-            Abbreviation: "SV",
-            Votes2019: "744",
-            Votes2023: "672"
+            Driver: "1. Lewis Hamilton",
+            Country: "United Kingdom",
+            Wins: "103"
         },
         {
-            Partyname: "Venstre",
-            Abbreviation: "V",
-            Votes2019: "393",
-            Votes2023: "190"
+            Driver: "1. Lewis Hamilton",
+            Country: "United Kingdom",
+            Wins: "103"
         },
         {
-            Partyname: "Pensjonistpartiet",
-            Abbreviation: "Pp",
-            Votes2019: "1206",
-            Votes2023: "1438"
+            Driver: "1. Lewis Hamilton",
+            Country: "United Kingdom",
+            Wins: "103"
         },
         {
-            Partyname: "Industri og Næringspartiet",
-            Abbreviation: "INP",
-            Votes2019: "0",
-            Votes2023: "1290"
-        },
-        {
-            Partyname: "Liberalistene",
-            Abbreviation: "Lib",
-            Votes2019: "0",
-            Votes2023: "51"
-        },
-        {
-            Partyname: "Norgesdemokratene",
-            Abbreviation: "ND",
-            Votes2019: "0",
-            Votes2023: "201"
+            Driver: "1. Lewis Hamilton",
+            Country: "United Kingdom",
+            Wins: "103"
         }
         ]
 
         //Create arrays with the necessary data, to make it available for JavaScript
         const labelData = []
-        data.map((item) => labelData.push(item.Abbreviation))
-        const votes2019 = []
-        data.map((item) => votes2019.push(item.Votes2019))
-        const votes2023 = []
-        data.map((item) => votes2023.push(item.Votes2023))
+        data.map((item) => labelData.push(item.Country))
+        const driver = []
+        data.map((item) => driver.push(item.Driver))
+        const wins = []
+        data.map((item) => wins.push(item.Wins))
 
         //Initialize the graph using Chart.js
         new Chart(comparison, {
@@ -157,12 +135,16 @@
                 labels: labelData, //data array made from the data set
                 datasets: [
                     {
-                        label: "Votes 2019",
-                        data: votes2019 //data array made from the data set
+                        label: "Driver",
+                        data: Driver //data array made from the data set
                     },
                     {
-                        label: "Votes 2023",
-                        data: votes2023 //data array made from the data set
+                        label: "Country",
+                        data: Country //data array made from the data set
+                    },
+                    {
+                        label: "Wins",
+                        data: Wins //data array made from the data set
                     }
                 ]
             },
