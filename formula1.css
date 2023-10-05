@@ -73,12 +73,17 @@ header a {
     padding-top: 50px;
     box-sizing: border-box;
 }
-.redBg {
-    background: #b61010;
-    color: #fff;
-}
+
 .greenBg {
     background: #588002;
+    color: #fff;
+}
+.silverBg {
+    background: #C0C0C0;
+    color: #fff;
+}
+.bronzeBg {
+    background: #CD7F32;
     color: #fff;
 }
 .big {
