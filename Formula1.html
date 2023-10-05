@@ -6,6 +6,14 @@
     <title>Formula 1: Historical stats.</title>
     <link href="formula1.css" rel="stylesheet" media="all">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        /* Add CSS styles as needed */
+        .scrollImage {
+            height: 400px; /* Adjust the height as needed */
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -21,17 +29,17 @@
     </section>
     <section id="changingBg" class="scrollContainer">
         <div id="winner1" class="scrollText">
-            <h2>Winner 1</h2>
+            <h2>Lewis Hamilton</h2>
             <aside class="alignRight">
                 <div class="circle greenBg">
                     <span class="big">103</span>
                     <span class="small">Wins</span>
                 </div>
             </aside>
-            <p>Lewis Hamilton is the nr 1 winner of all time</p>
+            <p>Lewis Hamilton is the person with the most wins in formula 1 history</p>
         </div>
         <div id="Winner2" class="scrollText">
-            <h2>Winner 2</h2>
+            <h2>Michael Schumacher</h2>
             <aside class="alignRight">
                 <div class="circle greenBg">
                     <span class="big">91</span>
@@ -52,117 +60,31 @@
         </div>
         <div id="comparisonchart" class="scrollText">
             <h2>Top 10 winners</h2>
-            </aside>
             <p>This is the top ten winners of all time</p>
-            <div style="min-height:293px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/lTsE3/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/lTsE3/full.png" alt="" /></noscript></div>            <canvas id="comparison"></canvas>
+            <div style="min-height:293px"><script type="text/javascript" defer src="https://datawrapper.dwcdn.net/lTsE3/embed.js?v=1" charset="utf-8"></script><noscript><img src="https://datawrapper.dwcdn.net/lTsE3/full.png" alt="" /></noscript></div>            
+            <canvas id="comparison"></canvas>
         </div>
     </section>
 
+    <!-- Add a new div for each section where you want to display images -->
+    <div id="imageSection1" class="scrollImage"></div>
+    <div id="imageSection2" class="scrollImage"></div>
+    <div id="imageSection3" class="scrollImage"></div>
+    <div id="imageSection4" class="scrollImage"></div>
+
     <script>
-        const comparison = document.getElementById("comparison")
-        //Dataset
-        const data = [
-        {
-            Driver: "1. Lewis Hamilton",
-            Country: "United Kingdom",
-            Wins: "103"
-        },
-        {
-            Driver: "2. Michael Schumacher",
-            Country: "Germany",
-            Wins: "91"
-        },
-        {
-            Driver: "3. Sebastian Vettel",
-            Country: "Germany",
-            Wins: "53"
-        },
-        {
-            Driver: "4. Alain Pros",
-            Country: "France",
-            Wins: "51"
-        },
-        {
-            Driver: "5. Max Verstappen",
-            Country: "Netherlands",
-            Wins: "48"
-        },
-        {
-            Driver: "6. Ayrton Senna",
-            Country: "Brazil",
-            Wins: "41"
-        },
-        {
-            Driver: "7.  Fernando Alonso",
-            Country: "Spain",
-            Wins: "32"
-        },
-        {
-            Driver: "8. Nigel Mansell",
-            Country: "United Kingdom",
-            Wins: "31"
-        },
-        {
-            Driver: "9. Jackie Stewart",
-            Country: "United Kingdom",
-            Wins: "27"
-        },
-        {
-            Driver: "10. Jim Clark",
-            Country: "United Kingdom",
-            Wins: "25"
-        },
-        {
-            Driver: "10. Niki Lauda",
-            Country: "Austria",
-            Wins: "25"
-        }
-        ]
+        const comparison = document.getElementById("comparison");
 
-        //Create arrays with the necessary data, to make it available for JavaScript
-        const labelData = []
-        data.map((item) => labelData.push(item.Country))
-        const driver = []
-        data.map((item) => driver.push(item.Driver))
-        const wins = []
-        data.map((item) => wins.push(item.Wins))
-
-        //Initialize the graph using Chart.js
-        new Chart(comparison, {
-            type: "bar",
-            data: {
-                labels: labelData, //data array made from the data set
-                datasets: [
-                    {
-                        label: "Driver",
-                        data: Driver //data array made from the data set
-                    },
-                    {
-                        label: "Country",
-                        data: Country //data array made from the data set
-                    },
-                    {
-                        label: "Wins",
-                        data: Wins //data array made from the data set
-                    }
-                ]
-            },
-            options: {
-                scales: {
-                    y: { beginAtZero: true }
-                }
-            }
-        })
-
-        //Function to check if element is in viewport
+        // Function to check if element is in viewport
         function isInViewport(el) {
             const rect = el.getBoundingClientRect();
             return (
-                //Improved check of viewport for elements exceeding viewport height
-                (rect.top <= 0 && rect.bottom >= 0) || 
-                (rect.top >= 0 && rect.left >= 0 &&
-                rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-                rect.right <= (window.innerWidth || document.documentElement.clientWidth))
+                // Improved check of viewport for elements exceeding viewport height
+                (rect.top <= 0 && rect.bottom >= 0) ||
+                (rect.top >= 0 &&
+                    rect.left >= 0 &&
+                    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+                    rect.right <= (window.innerWidth || document.documentElement.clientWidth))
             );
         }
 
